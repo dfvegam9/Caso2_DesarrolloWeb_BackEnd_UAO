@@ -1,0 +1,8 @@
+{
+  "name": "caso2-desarrollo-web-backend-uao",
+  "version": "1.0.0",
+  "description": "Simulador backend de cuotas mensuales para el Caso 2.",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "express": "^4.21.2" }
+}

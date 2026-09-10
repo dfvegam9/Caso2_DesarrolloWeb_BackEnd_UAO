@@ -1,0 +1,127 @@
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: lightcyan;
+  color: #172033;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+header,
+main,
+footer {
+    width: min(100% - 32px, 1000px);
+    margin-inline: auto;
+}
+
+header {
+    padding-top: 28px;
+}
+
+header img {
+    display: block;
+    width: min(450px, 100%);
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid #172033;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+h1 {
+    margin: 22px 0 18px;
+    color: blue;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+section { padding-bottom: 28px; }
+
+.introduccion {
+  margin: 5px 10px 22px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  background-color: lightskyblue;
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+table {
+  width: min(100%, 430px);
+  margin: 0 auto 20px;
+  border: 2px solid #172033;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+caption { padding-bottom: 6px; font-weight: 700; }
+td { padding: 5px 8px; border: 1px solid #6d7788; }
+td:first-child { width: 42%; font-weight: 700; text-align: right; }
+td:last-child { text-align: left; }
+input, textarea, select, button { font: inherit; }
+
+input {
+  width: 100%;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid #8a94a6;
+  border-radius: 4px;
+  background-color: white;
+}
+
+textarea {
+  display: block;
+  width: min(100%, 600px);
+  height: 120px;
+  margin: 0 auto 16px;
+  padding: 12px;
+  resize: vertical;
+  border: 2px solid #172033;
+  background-color: white;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 15px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.acciones { display: flex; justify-content: center; gap: 10px; }
+
+select, button {
+  min-height: 42px;
+  padding: 7px 12px;
+  border: 1px solid #526071;
+  border-radius: 6px;
+}
+
+select { max-width: 390px; background-color: white; }
+
+button {
+  background-color: #0057b8;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover { background-color: #003f87; }
+
+input:focus, select:focus, button:focus-visible {
+  outline: 3px solid rgba(0, 0, 255, .25);
+  outline-offset: 2px;
+}
+
+footer { padding-bottom: 22px; }
+footer hr { border: 0; border-top: 1px solid #9eb9c4; }
+footer p { margin: 18px 0 0; font-size: 17px; line-height: 1.45; }
+
+@media (max-width: 640px) {
+  body { font-size: 18px; }
+  header, main, footer { width: min(100% - 24px, 1000px); }
+  h1 { font-size: 27px; }
+  .introduccion { margin-inline: 0; font-size: 21px; }
+  .acciones { flex-direction: column; }
+  select, button { width: 100%; max-width: none; }
+}
