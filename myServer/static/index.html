@@ -1,117 +1,85 @@
+<!-- Integrantes: Diego Vega (2246124), Katherine Andrea Fernandez (224603) y Giannella Quintero (2247754), Carlos Andres Rodriguez (2246012)
+            Asignatura: Estructuras de Datos y Algoritmos 1 de la
+            Universidad Autónoma de Occidente. -->
 <!doctype html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Simulador Financiero - UAO</title>
-        <link rel="stylesheet" href="/default.css" />
-    </head>
-    <body>
-        <header>
-            <img src="/logouao.png" alt="Logo 50 años" />
-            <h1>Caso 1 - Cómputo de cuotas mensuales</h1>
-        </header>
-        <main>
-            <section>
-                <p class="introduccion">
-                    Este aplicativo permite el cómputo de la cuota mensual con
-                    los datos suministrados y la generación de un par de
-                    reportes.
-                </p>
-                <form
-                    action="/procesaCuota"
-                    method="post"
-                    enctype="application/x-www-form-urlencoded"
-                >
-                    <table>
-                        <caption>
-                            Simulador de Cuotas
-                        </caption>
-                        <tr>
-                            <td><label for="elNombre">Nombre</label></td>
-                            <td>
-                                <input
-                                    type="text"
-                                    value="Lina Rios"
-                                    id="elNombre"
-                                    name="elNombre"
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="elPrestamo">Préstamo $</label></td>
-                            <td>
-                                <input
-                                    type="number"
-                                    value="6000000"
-                                    id="elPrestamo"
-                                    name="elPrestamo"
-                                    min="1"
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="elInteres">Interés (%)</label></td>
-                            <td>
-                                <input
-                                    type="number"
-                                    value="15.5"
-                                    id="elInteres"
-                                    name="elInteres"
-                                    min="0.01"
-                                    step="any"
-                                    required
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="losMeses">Meses</label></td>
-                            <td>
-                                <input
-                                    type="number"
-                                    value="12"
-                                    id="losMeses"
-                                    name="losMeses"
-                                    min="1"
-                                    required
-                                />
-                            </td>
-                        </tr>
-                    </table>
-                    <textarea
-                        name="laRespuesta"
-                        aria-label="Respuesta del simulador"
-                        readonly
-                    ></textarea>
-                    <div class="acciones">
-                        <select
-                            name="laOpcion"
-                            aria-label="Funcionalidad a ejecutar"
-                        >
-                            <option value="Calcular" selected>
-                                Calcular cuota
-                            </option>
-                            <option value="ListarTodos">Listar todos</option>
-                            <option value="ListarGanan">
-                                Listar préstamos mayores a $1.000.000
-                            </option>
-                        </select>
-                        <button id="procesar" type="submit">
-                            Ejecutar funcionalidad
-                        </button>
-                    </div>
-                </form>
-            </section>
-        </main>
-        <footer>
-            <hr />
-            <p>
-                Creado por Diego Vega, Andrea Fernandez y Giannella Quintero
-                para el curso de Estructuras de Datos y Algoritmos 1 de la
-                Universidad Autónoma de Occidente.
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Financiero - UAO</title>
+    <link rel="stylesheet" href="/default.css" />
+</head>
+
+<body>
+    <header>
+        <img src="/logouao.png" alt="Logo 50 años" />
+        <h1>Caso 1 - Cómputo de cuotas mensuales</h1>
+    </header>
+    <main>
+        <section>
+            <p class="introduccion">
+                Este aplicativo permite el cómputo de la cuota mensual con
+                los datos suministrados y la generación de un par de
+                reportes.
             </p>
-        </footer>
-    </body>
+            <form action="/procesaCuota" method="post" enctype="application/x-www-form-urlencoded">
+                <table>
+                    <caption>
+                        Simulador de Cuotas
+                    </caption>
+                    <tr>
+                        <td><label for="elNombre">Nombre</label></td>
+                        <td>
+                            <input type="text" value="Lina Rios" id="elNombre" name="elNombre" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="elPrestamo">Préstamo $</label></td>
+                        <td>
+                            <input type="number" value="6000000" id="elPrestamo" name="elPrestamo" min="1" required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="elInteres">Interés (%)</label></td>
+                        <td>
+                            <input type="number" value="15.5" id="elInteres" name="elInteres" min="0.01" step="any"
+                                required />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="losMeses">Meses</label></td>
+                        <td>
+                            <input type="number" value="12" id="losMeses" name="losMeses" min="1" required />
+                        </td>
+                    </tr>
+                </table>
+                <textarea name="laRespuesta" aria-label="Respuesta del simulador" readonly></textarea>
+                <div class="acciones">
+                    <select name="laOpcion" aria-label="Funcionalidad a ejecutar">
+                        <option value="Calcular" selected>
+                            Calcular cuota
+                        </option>
+                        <option value="ListarTodos">Listar todos</option>
+                        <option value="ListarGanan">
+                            Listar préstamos mayores a $1.000.000
+                        </option>
+                    </select>
+                    <button id="procesar" type="submit">
+                        Ejecutar funcionalidad
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <hr />
+        <p>
+            Creado por Diego Vega, Katherine Andrea Fernandez y Giannella Quintero, Carlos Andres Rodriguez
+            para el curso de Estructuras de Datos y Algoritmos 1 de la
+            Universidad Autónoma de Occidente.
+        </p>
+    </footer>
+</body>
+
 </html>

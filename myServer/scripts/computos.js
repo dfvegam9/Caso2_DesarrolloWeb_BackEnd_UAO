@@ -1,16 +1,16 @@
 // Escapa caracteres especiales para evitar inyección de HTML en los datos del usuario.
 function escaparHTML(valor) {
-  return String(valor ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
+    return String(valor ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 }
 
 // Genera el documento HTML completo que envuelve la interfaz del simulador.
 function crearPagina(nombre, prestamo, meses, interes, cadSalida) {
-  return `<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8">
@@ -25,8 +25,14 @@ function crearPagina(nombre, prestamo, meses, interes, cadSalida) {
 }
 
 // Crea el contenido principal de la página con el formulario y la salida calculada.
-function contenidoPagina(nombre = 'Lina Rios', prestamo = 6000000, meses = 12, interes = 15.5, cadSalida = '') {
-  return `<header>
+function contenidoPagina(
+    nombre = "Lina Rios",
+    prestamo = 6000000,
+    meses = 12,
+    interes = 15.5,
+    cadSalida = "",
+) {
+    return `<header>
             <img src="/logouao.png" alt="Logo 50 años" />
             <h1>Caso 1 - Cómputo de cuotas mensuales</h1>
         </header>
@@ -55,45 +61,52 @@ function contenidoPagina(nombre = 'Lina Rios', prestamo = 6000000, meses = 12, i
     </main>
     <footer>
       <hr>
-      <p>Creado por Diego Vega, Andrea Fernandez y Giannella Quintero para el curso de Estructuras de Datos y Algoritmos 1 de la Universidad Autónoma de Occidente.</p>
+      <p>Creado por Diego Vega, Katherine Andrea Fernandez y Giannella Quintero, Carlos Andres Rodriguez
+                para el curso de Estructuras de Datos y Algoritmos 1 de la
+                Universidad Autónoma de Occidente..</p>
     </footer>`;
 }
 
 // Calcula la cuota mensual de un préstamo con interés compuesto usando la fórmula de amortización.
 function calcularCuotaMensual(prestamo, interes, meses) {
-  const auxiliar = Math.pow(1 + interes, meses);
-  const resultado = prestamo * ((interes * auxiliar) / (auxiliar - 1));
-  return Math.round(resultado * 100) / 100;
+    const auxiliar = Math.pow(1 + interes, meses);
+    const resultado = prestamo * ((interes * auxiliar) / (auxiliar - 1));
+    return Math.round(resultado * 100) / 100;
 }
 
 // Construye un texto con el listado completo de los préstamos ya procesados.
 function reporteTotal(info) {
-  let mensaje = '';
-  if (info.length === 0) {
-    mensaje = 'No hay préstamos procesados';
-  } else {
-    mensaje = 'Listado de préstamos procesados son:\n\n';
-  }
-  info.forEach((dato) => {
-    mensaje += `${dato.nombre} -- $ ${dato.prestamo} - $ ${dato.cuota.toFixed(2)} - ${dato.meses} meses - ${dato.interes}%\n`;
-  });
-  return mensaje;
+    let mensaje = "";
+    if (info.length === 0) {
+        mensaje = "No hay préstamos procesados";
+    } else {
+        mensaje = "Listado de préstamos procesados son:\n\n";
+    }
+    info.forEach((dato) => {
+        mensaje += `${dato.nombre} -- $ ${dato.prestamo} - $ ${dato.cuota.toFixed(2)} - ${dato.meses} meses - ${dato.interes}%\n`;
+    });
+    return mensaje;
 }
 
 // Filtra los préstamos mayores a un millón para generar un reporte específico.
 function reporteMasGanan(info) {
-  let mensaje = '';
-  const aux = info.filter((dato) => dato.prestamo > 1000000);
-  if (aux.length === 0) {
-    mensaje = 'No hay préstamos mayores a $1.000.000';
-  } else {
-    mensaje = 'Listado de préstamos mayores a $1.000.000:\n\n';
-  }
-  aux.forEach((dato) => {
-    mensaje += `${dato.nombre} -- $ ${dato.prestamo} - $ ${dato.cuota.toFixed(2)}\n`;
-  });
-  return mensaje;
+    let mensaje = "";
+    const aux = info.filter((dato) => dato.prestamo > 1000000);
+    if (aux.length === 0) {
+        mensaje = "No hay préstamos mayores a $1.000.000";
+    } else {
+        mensaje = "Listado de préstamos mayores a $1.000.000:\n\n";
+    }
+    aux.forEach((dato) => {
+        mensaje += `${dato.nombre} -- $ ${dato.prestamo} - $ ${dato.cuota.toFixed(2)}\n`;
+    });
+    return mensaje;
 }
 
 // Exporta las funciones que serán utilizadas desde el servidor principal.
-module.exports = { crearPagina, calcularCuotaMensual, reporteTotal, reporteMasGanan };
+module.exports = {
+    crearPagina,
+    calcularCuotaMensual,
+    reporteTotal,
+    reporteMasGanan,
+};
