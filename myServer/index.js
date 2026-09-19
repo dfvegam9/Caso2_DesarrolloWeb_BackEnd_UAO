@@ -2,13 +2,34 @@
 const path = require('path');
 const util = require('./scripts/computos');
 const express = require('express');
+const livereload = require("livereload");
+const connectLivereload = require("connect-livereload");
 
 // Crea la instancia del servidor web de Express.
 const app = express();
 const port = 1234;
 
+// LiveReload
+const liveReloadServer = livereload.createServer();
+
+// Watch files
+liveReloadServer.watch([
+    __dirname + "/public",
+    __dirname
+]);
+
+// Reload page
+liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+        liveReloadServer.refresh("/");
+    }, 100);
+});
+
 // Arreglo que guarda los préstamos procesados para poder listar resultados posteriores.
 const infoCuotas = [];
+
+// LiveReload middleware
+app.use(connectLivereload());
 
 // Permite leer los datos enviados desde formularios HTML (application/x-www-form-urlencoded).
 app.use(express.urlencoded({ extended: true }));
