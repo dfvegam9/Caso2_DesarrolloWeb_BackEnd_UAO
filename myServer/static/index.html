@@ -7,79 +7,197 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Simulador Financiero - UAO</title>
+
     <link rel="stylesheet" href="/default.css" />
 </head>
 
 <body>
-    <header>
-        <img src="/logouao.png" alt="Logo 50 años" />
-        <h1>Caso 1 - Cómputo de cuotas mensuales</h1>
+
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+        <div class="encabezado-contenido">
+
+            <div class="logo-container">
+                <img src="/logouao.png" alt="Universidad Autónoma de Occidente" />
+            </div>
+
+            <div class="encabezado-texto">
+                <span class="etiqueta">ESTRUCTURAS DE DATOS Y ALGORITMOS I</span>
+                <h1>Caso 2</h1>
+                <p>Cómputo de cuotas mensuales</p>
+            </div>
+
+        </div>
     </header>
-    <main>
-        <section>
-            <p class="introduccion">
-                Este aplicativo permite el cómputo de la cuota mensual con
-                los datos suministrados y la generación de un par de
-                reportes.
-            </p>
-            <form action="/procesaCuota" method="post" enctype="application/x-www-form-urlencoded">
-                <table>
-                    <caption>
-                        Simulador de Cuotas
-                    </caption>
-                    <tr>
-                        <td><label for="elNombre">Nombre</label></td>
-                        <td>
-                            <input type="text" value="Lina Rios" id="elNombre" name="elNombre" required />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="elPrestamo">Préstamo $</label></td>
-                        <td>
-                            <input type="number" value="6000000" id="elPrestamo" name="elPrestamo" min="1" required />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="elInteres">Interés (%)</label></td>
-                        <td>
-                            <input type="number" value="15.5" id="elInteres" name="elInteres" min="0.01" step="any"
-                                required />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="losMeses">Meses</label></td>
-                        <td>
-                            <input type="number" value="12" id="losMeses" name="losMeses" min="1" required />
-                        </td>
-                    </tr>
-                </table>
-                <textarea name="laRespuesta" aria-label="Respuesta del simulador" readonly></textarea>
-                <div class="acciones">
-                    <select name="laOpcion" aria-label="Funcionalidad a ejecutar">
-                        <option value="Calcular" selected>
-                            Calcular cuota
-                        </option>
-                        <option value="ListarTodos">Listar todos</option>
-                        <option value="ListarGanan">
-                            Listar préstamos mayores a $1.000.000
-                        </option>
-                    </select>
-                    <button id="procesar" type="submit">
-                        Ejecutar funcionalidad
-                    </button>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenedor">
+
+        <section class="card">
+
+            <!-- TÍTULO -->
+            <div class="card-header">
+                <div class="icono">$</div>
+
+                <div>
+                    <h2>Simulador de Cuotas</h2>
+                    <p>
+                        Calcula cuotas mensuales y consulta los préstamos registrados.
+                    </p>
                 </div>
+            </div>
+
+
+            <!-- INTRODUCCIÓN -->
+            <div class="introduccion">
+                <p>
+                    Este aplicativo permite el cómputo de la cuota mensual con
+                    los datos suministrados y la generación de un par de
+                    reportes.
+                </p>
+            </div>
+
+
+            <!-- FORMULARIO -->
+            <form action="/procesaCuota" method="post" enctype="application/x-www-form-urlencoded">
+
+                <div class="formulario">
+
+                    <!-- NOMBRE -->
+                    <div class="campo">
+                        <label for="elNombre">
+                            Nombre
+                        </label>
+
+                        <input type="text" value="Lina Rios" id="elNombre" name="elNombre"
+                            placeholder="Ingrese el nombre" required />
+                    </div>
+
+
+                    <!-- PRÉSTAMO -->
+                    <div class="campo">
+                        <label for="elPrestamo">
+                            Préstamo
+                        </label>
+
+                        <div class="input-icono">
+                            <span>$</span>
+
+                            <input type="number" value="6000000" id="elPrestamo" name="elPrestamo" min="1"
+                                placeholder="Valor del préstamo" required />
+                        </div>
+                    </div>
+
+
+                    <!-- INTERÉS -->
+                    <div class="campo">
+                        <label for="elInteres">
+                            Interés (%)
+                        </label>
+
+                        <div class="input-icono">
+                            <span>%</span>
+
+                            <input type="number" value="15.5" id="elInteres" name="elInteres" min="0.01" step="any"
+                                placeholder="Porcentaje" required />
+                        </div>
+                    </div>
+
+
+                    <!-- MESES -->
+                    <div class="campo">
+                        <label for="losMeses">
+                            Plazo
+                        </label>
+
+                        <div class="input-icono">
+                            <span>#</span>
+
+                            <input type="number" value="12" id="losMeses" name="losMeses" min="1"
+                                placeholder="Cantidad de meses" required />
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- RESULTADO -->
+                <div class="resultado">
+
+                    <div class="resultado-header">
+                        <span>Resultado</span>
+                    </div>
+
+                    <textarea name="laRespuesta" aria-label="Respuesta del simulador" readonly
+                        placeholder="El resultado de la operación aparecerá aquí..."></textarea>
+
+                </div>
+
+
+                <!-- ACCIONES -->
+                <div class="acciones">
+
+                    <div class="selector-container">
+
+                        <label for="laOpcion">
+                            Funcionalidad
+                        </label>
+
+                        <select name="laOpcion" id="laOpcion" aria-label="Funcionalidad a ejecutar">
+                            <option value="Calcular" selected>
+                                Calcular cuota
+                            </option>
+
+                            <option value="ListarTodos">
+                                Listar todos
+                            </option>
+
+                            <option value="ListarGanan">
+                                Listar préstamos mayores a $1.000.000
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <button id="procesar" type="submit">
+                        <span>Ejecutar funcionalidad</span>
+                        <span class="flecha">→</span>
+                    </button>
+
+                </div>
+
             </form>
+
         </section>
+
     </main>
-    <footer>
-        <hr />
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer">
+
+        <div class="footer-linea"></div>
+
         <p>
-            Creado por Diego Vega, Katherine Andrea Fernandez y Giannella Quintero, Carlos Andres Rodriguez
-            para el curso de Estructuras de Datos y Algoritmos 1 de la
-            Universidad Autónoma de Occidente.
+            Creado por
+            <strong>Diego Vega</strong>,
+            <strong>Katherine Andrea Fernandez</strong>,
+            <strong>Giannella Quintero</strong> y
+            <strong>Carlos Andres Rodriguez</strong>.
         </p>
+
+        <p>
+            Curso de Estructuras de Datos y Algoritmos I
+            <span>•</span>
+            Universidad Autónoma de Occidente
+        </p>
+
     </footer>
+
 </body>
 
 </html>
